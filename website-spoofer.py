@@ -64,10 +64,10 @@ if payload == '1':
     os.remove(fileName)
     time.sleep(4)
 
-    else
-    print 'Payload(s) failed to be bound! Exiting in 4 seconds...'
-    os.remove(fileName)
-    time.sleep(4)
+# else
+    #print 'Payload(s) failed to be bound! Exiting in 4 seconds...'
+    #os.remove(fileName)
+    #time.sleep(4)
 
 # XSS/JS Keylogger + PHP
 #if payload == '2':
