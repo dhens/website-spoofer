@@ -74,12 +74,3 @@ if payload == '1':
     #newFileName = raw_input() + '.php'
     #print 'Please enter url where you will store your '+ newFileName + ' file eg.(http://mywebsite.com/' + newFileName
     #fileUrl = raw_input() + newFileName
-	
-# Drive by java applet, we already declared source for it, and saved it as Signed-Applet.java
-# Now how do we compile it? Do we send a post request to an online compiler?
-#if payload == '3':
-    #print 'Note, for your applet to work, you must take Sign-Applet.java\n by using jPortable to compile before you are able to \n use it.'
-    #print 'Create new name for file: eg. (google)'
-    #newFileName = raw_input() + '.php' 
-    #print 'Enter link to file you want the drive by to run on the victim: eg. (http://website.com/filetodownload.exe)'
-    #driveByExe = raw_input()
