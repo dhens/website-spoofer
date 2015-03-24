@@ -1,10 +1,4 @@
 # -*- coding: cp1252 -*-
-#######WebsiteSpoofer########
-# Even though only I will   #
-# Use this, thanks Matt for #
-# Being the only guy who was#
-#        Nice to me         #
-#############################
 
 # DEAR WHOEVER SEES MY UPLOADED CONTENT,
 # I'M NOT USING THIS MALICIOUSLY
