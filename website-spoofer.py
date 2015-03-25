@@ -1,11 +1,3 @@
-# -*- coding: cp1252 -*-
-#######WebsiteSpoofer########
-# Even though only I will   #
-# Use this, thanks Matt for #
-# Being the only guy who was#
-#        Nice to me         #
-#############################
-
 #!/usr/bin/python
 import urllib
 import time
