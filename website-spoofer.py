@@ -36,7 +36,6 @@ fileOpen.close()
 # choose what payloads to add to new webpage
 print 'Enter corresponding key to add payload:'
 print '[1] Add ip logger'
-print '[2] Add JS Keylogger (EXPERMIENTAL)'
 payload = raw_input()
 
 # ip logger payload
