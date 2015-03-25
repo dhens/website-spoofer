@@ -61,14 +61,3 @@ if payload == '1':
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)					   ## give user time to read
-
-# else
-    #print 'Payload(s) failed to be bound! Exiting in 4 seconds...'
-    #os.remove(fileName)
-    #time.sleep(4)
-
-# XSS/JS Keylogger + PHP
-#if payload == '2':
-    #newFileName = raw_input() + '.php'
-    #print 'Please enter url where you will store your '+ newFileName + ' file eg.(http://mywebsite.com/' + newFileName
-    #fileUrl = raw_input() + newFileName
