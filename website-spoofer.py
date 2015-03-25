@@ -1,5 +1,3 @@
-# -*- coding: cp1252 -*-
-
 #!/usr/bin/python
 import urllib
 import time
