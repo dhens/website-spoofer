@@ -23,7 +23,7 @@ try:
 except IOError:
     print "Must be used as http://yoursite.com"
 
-# download the website files (code for now)
+# download the website code
 os.system("cls") 
 print 'Spoofing '+ url + ', this may take a few'
 urllib.urlretrieve (url, fileName)
