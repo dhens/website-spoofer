@@ -25,7 +25,7 @@ except IOError:
 
 # download the website code
 os.system("cls") 
-print 'Spoofing '+ url + ', this may take a few'
+print 'Spoofing '+ url + ', this may take a few bananas' # didn't specify a unit of time here, so Matt W. decided to make it bananas
 urllib.urlretrieve (url, fileName)
 
 # tell the user we finished
