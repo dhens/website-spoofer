@@ -22,6 +22,7 @@ try:
     
 except IOError:
     print "Must be used as http://yoursite.com"
+    system("pause")
 
 # download the website code
 os.system("cls") 
@@ -55,5 +56,3 @@ if payload == '1':
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
-
-    
