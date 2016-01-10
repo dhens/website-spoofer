@@ -69,13 +69,14 @@ fwrite($f,"Operating System:".php_uname("v")."(".php_uname("s").")"."\n");
 fclose($f);
 ?>"""
 
-    newFileName = raw_input("Create new name for file: eg. (google).php: ")
+    newFileName = raw_input("Create new name for php file: eg. google.php: ")
     print '\nBinding an ip logger to ' + newFileName
     
     makePage = open (newFileName, 'a') ## a will append, w will over-write
     makePage.write(ipLogger)           ## write the ip logger module
     makePage.write(fileContent)	       ## write downloaded html/php code
-    makePage.close()		       ## discontinue editing of file
+    makePage.close()		           ## discontinue editing of file and save to disk
+	
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
