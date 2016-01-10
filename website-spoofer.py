@@ -1,17 +1,9 @@
 #!/usr/bin/env python
 debug = False;
 
-import webbrowser
 import urllib
 import time
 import os
-
-chromePath = ""
-# Set Google Chrome Path
-if os.name == "nt":
-    chromePath = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s"
-elif os.name == "posix":
-    chromePath = "/usr/bin/chromium %s"
 
 # check if old file (spoofed.html) exists 
 fileName = 'spoofed.html'
@@ -80,6 +72,3 @@ fclose($f);
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
-
-    if chromePath != "": webbrowser.get(chromePath).open("spoofed.html")
-    else:                webbrowser.open("spoofed.html")
